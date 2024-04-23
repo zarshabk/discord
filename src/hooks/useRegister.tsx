@@ -11,7 +11,7 @@ const useRegister = () => {
       const resp = await axios.post('/api/user/', data);
       setLoading(false);
       return resp.data;
-    } catch (error) {
+    } catch (error:any) {
       setLoading(false);
       return toast.error(error?.response?.data?.message);
     }
