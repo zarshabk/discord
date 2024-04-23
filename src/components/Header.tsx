@@ -27,7 +27,7 @@ useEffect(() => {
   return (
   <div className={`${scroll ? "fixed top-0 w-full z-30 dark:bg-slate-900":""} shadow light:bg-white dark:bg-slate-900 bg-white z-20 `}>
       <header className={`container   h-[80px] mx-auto w-[95%] lg:w-[78%] md:w-[90%] flex items-center justify-between  z-20 `}>
-     <Link href={'/'}> <h5 className="text-xl font-bold uppercase">
+     <Link href={'/'}> <h5 className="lg:text-xl md:text-xl text-[14px] font-bold uppercase ">
         Discord{" "}
         <span className="text-[10px] text-green-500 text-primary">
           Ask anything

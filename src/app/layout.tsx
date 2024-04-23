@@ -30,7 +30,7 @@ export default function RootLayout({
                 position="top-center"
                 reverseOrder={false}
               />
-              <main className="container mx-auto w-[98%] lg:w-[78%] md:w-[90%]">
+              <main className="container mx-auto w-full lg:w-[78%] md:w-[90%]">
               {children}
               </main>
               <Footer/>

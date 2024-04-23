@@ -12,7 +12,7 @@ export default async function Home() {
   return (
 <section className="py-5">
 <div className="flex lg:flex-row md:flex-row flex-col gap-2">
-    <div className="w-full flex flex-col gap-2 p-5">
+    <div className="w-full flex flex-col gap-2 ">
      <PostCard/>
      <PostCard/>
      <PostCard/>
