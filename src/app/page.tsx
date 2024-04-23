@@ -22,7 +22,7 @@ export default async function Home() {
      <PostCard/>
      <PostCard/><PostCard/>
     </div>
-    <div className="lg:w-1/2 md:w-1/2 w-full p-5">
+    <div className="lg:w-1/2 md:w-1/2 w-full ">
        <Card>
          <CardHeader>
             <CardTitle>Related Questions</CardTitle>
