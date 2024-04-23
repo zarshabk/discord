@@ -24,21 +24,19 @@ import Link from 'next/link';
 
  
 const formSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
+  
   email: z.string().email(),
-  password:z.string().min(5,).max(8),
+  password:z.string(),
 });
 
 
 
-const RegisterForm = () => {
+const LoginForm = () => {
     const router = useRouter();
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-          username: "",
+         
           email:"",
           password:""
         },
@@ -52,7 +50,7 @@ const RegisterForm = () => {
         if(resp){
             toast.success(resp.message);
             form.reset()
-            router.push('/login')
+            router.push('/')
         }
        
       }
@@ -62,24 +60,10 @@ const RegisterForm = () => {
       <form  className="space-y-2 w-full lg:p-20 md:p-10 p-5" onSubmit={form.handleSubmit(onSubmit)}>
         <div className='text-center'>
             <CardTitle>Register</CardTitle>
-            <CardDescription>Already have an account <Link href={'/login'} className='text-blue-600'>sign in</Link> </CardDescription>
+            <CardDescription>Already have an account <Link href={'/register'} className='text-blue-600'>create account</Link> </CardDescription>
+
         </div>
-        <FormField
-          
-          name="username"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Username</FormLabel>
-              <FormControl>
-                <Input placeholder="username" {...field} />
-              </FormControl>
-              <FormDescription>
-               
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+       
           <FormField
           
           name="email"
@@ -114,13 +98,12 @@ const RegisterForm = () => {
         />
         <Button type="submit" disabled={loading}>{loading ? "Submitting":"Submit"}</Button>
         <div className='border-t-[1px] border-spacing-5 w-full my-2'>
-          <Button className="w-full bg-blue-700 text-white hover:bg-blue-800"> Continue With Gooogle</Button>
+          <Button className="w-full bg-blue-700 text-white hover:bg-blue-800"> Signin With Gooogle</Button>
       </div>
       </form>
-      
       </div>
     </Form>
   )
 }
 
-export default RegisterForm
+export default LoginForm
