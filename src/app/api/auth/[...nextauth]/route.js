@@ -20,7 +20,7 @@ import GithubProvider from "next-auth/providers/github";
 //   }),
 // ];
 
-export const authoptions = {
+const authoptions = {
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: "/login",
