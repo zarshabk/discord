@@ -1,5 +1,5 @@
 'use client';
-import React from 'react'
+import React, { useState } from 'react'
  
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -15,6 +15,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
+import { useSession, signIn, signOut } from "next-auth/react"
 import { Input } from "@/components/ui/input"
 import { CardDescription, CardTitle } from './ui/card';
 import useRegister from '@/hooks/useRegister';
@@ -33,6 +34,7 @@ const formSchema = z.object({
 
 const LoginForm = () => {
     const router = useRouter();
+    const [loading,setLoading]=useState(false)
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -42,16 +44,26 @@ const LoginForm = () => {
         },
       })
      
-      const {loading,registerUser} = useRegister();
+      
       async function onSubmit(values: z.infer<typeof formSchema>) {
+        setLoading(true)
+       try {
+        const resp = await signIn('credentials',{
+          email:values.email,
+          password:values.password
+        })
         
-        const resp = await registerUser(values);
+        toast.success("login successfull")
+        
+       } catch (error:any) {
+        toast.error(error?.response?.data?.message)
+       }
 
-        if(resp){
-            toast.success(resp.message);
-            form.reset()
-            router.push('/')
-        }
+        // if(resp){
+        //     toast.success(resp.message);
+        //     form.reset()
+        //     router.push('/')
+        // }
        
       }
   return (
@@ -59,7 +71,7 @@ const LoginForm = () => {
       <div className='w-full divide-y divide-dashed'>
       <form  className="space-y-2 w-full lg:p-20 md:p-10 p-5" onSubmit={form.handleSubmit(onSubmit)}>
         <div className='text-center'>
-            <CardTitle>Register</CardTitle>
+            <CardTitle>Login</CardTitle>
             <CardDescription>Already have an account <Link href={'/register'} className='text-blue-600'>create account</Link> </CardDescription>
 
         </div>
@@ -97,8 +109,10 @@ const LoginForm = () => {
           )}
         />
         <Button type="submit" disabled={loading}>{loading ? "Submitting":"Submit"}</Button>
-        <div className='border-t-[1px] border-spacing-5 w-full my-2'>
-          <Button className="w-full bg-blue-700 text-white hover:bg-blue-800"> Signin With Gooogle</Button>
+        <div className='border-t-[1px] border-spacing-5 w-full flex flex-col gap-1 my-2'>
+        <Button onClick={()=>signIn('google')} type="button" className="w-full bg-blue-700 text-white hover:bg-blue-800"> Signin With Google</Button>
+
+          <Button onClick={()=>signIn('github')} type="button" className="w-full bg-black text-white hover:bg-blue-800"> Signin With Github</Button>
       </div>
       </form>
       </div>

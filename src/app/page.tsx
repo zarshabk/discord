@@ -3,12 +3,15 @@ import RelatedPost from "@/components/RelatedPost";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import User from "@/models/user";
+import { getServerSession } from "next-auth";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
 
 export default async function Home() {
-
+  const s = getServerSession()
+  console.log("SESSION",s)
   return (
 <section className="py-5">
 <div className="flex lg:flex-row md:flex-row flex-col gap-2">

@@ -7,7 +7,7 @@ type Props = {}
 const RelatedPost = (props: Props) => {
   return (
     
-            <Link href={'#'} color="blue" className="text-blue-600">
+            <Link href={'#'} color="blue" className="text-blue-600 border-b-[1px] border-gray-500 py-1">
               <CardDescription color="blue"className="text-blue-600 hover:underline">Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis sapiente veritatis at impedit perferendis dignissimos vel totam corrupti, minima quaerat dolores corporis. Natus, perspiciatis?</CardDescription>
             </Link>
          

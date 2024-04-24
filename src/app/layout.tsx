@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/Theme-provider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import toast ,{Toaster} from 'react-hot-toast'
+import AuthProvider from "@/components/Provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -20,11 +21,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} min-h-screen w-full`}>
-        <ThemeProvider 
+       
+       <ThemeProvider 
             attribute="class"
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange>
+              <AuthProvider>
               <Header/>
               <Toaster
                 position="top-center"
@@ -34,8 +37,9 @@ export default function RootLayout({
               {children}
               </main>
               <Footer/>
-           
+              </AuthProvider>
         </ThemeProvider>
+       
         </body>
     </html>
   );

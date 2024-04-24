@@ -4,7 +4,8 @@ import React from 'react'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
- 
+import { useSession, signIn, signOut } from "next-auth/react"
+
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -114,8 +115,11 @@ const RegisterForm = () => {
         />
         <Button type="submit" disabled={loading}>{loading ? "Submitting":"Submit"}</Button>
         <div className='border-t-[1px] border-spacing-5 w-full my-2'>
-          <Button className="w-full bg-blue-700 text-white hover:bg-blue-800"> Continue With Gooogle</Button>
-      </div>
+        <div className='border-t-[1px] border-spacing-5 w-full flex flex-col gap-1 my-2'>
+        <Button onClick={()=>signIn('google')} type="button" className="w-full bg-blue-700 text-white hover:bg-blue-800"> Signin With Google</Button>
+
+          <Button onClick={()=>signIn('github')} type="button" className="w-full bg-black text-white hover:bg-blue-800"> Signin With Github</Button>
+      </div>      </div>
       </form>
       
       </div>
