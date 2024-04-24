@@ -67,6 +67,7 @@ const authoptions = {
 
   callbacks: {
     async signIn({ account, profile }) {
+      await dbConnection();
       console.log("Social auth", profile);
       if (account.provider === "google" || account.provider == "github") {
         const user = await User.findOne({ email: profile.email });
